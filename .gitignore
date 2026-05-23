@@ -128,11 +128,16 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+logs/
+AutogluonModels/
+datasets/
 data/results/*
 .DS_Store
 autogluon/
 .pkl
 .idea
+std.out
+uv.lock
 /examples/task_cache/
 /examples/experiments/
 /examples/eval/
@@ -156,5 +161,6 @@ autogluon/
 /examples/**/*.png
 /examples/**/*.tex
 /examples/**/*.zip
+/examples/**/*.sh
 
 /tmp_scripts/
