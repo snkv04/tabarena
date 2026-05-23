@@ -9,6 +9,7 @@ from tabarena.benchmark.models.ag import (
     KNNNewModel,
     LimiXModel,
     ModernNCAModel,
+    NanoTabPFNModel,
     OrionMSPModel,
     PerpetualBoosterModel,
     RealMLPModel,
@@ -44,6 +45,7 @@ _models_to_add = [
     LimiXModel,
     TabPFN3Model,
     OrionMSPModel,
+    NanoTabPFNModel,
 ]
 
 for _model_cls in _models_to_add:

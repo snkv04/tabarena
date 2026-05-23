@@ -1,6 +1,9 @@
 [tool.uv.workspace]
 members = ["tabarena", "bencheval"]
 
+[tool.uv]
+environments = ["sys_platform == 'linux'"]
+
 [tool.uv.sources]
 tabarena = { workspace = true }
 bencheval = { workspace = true }
