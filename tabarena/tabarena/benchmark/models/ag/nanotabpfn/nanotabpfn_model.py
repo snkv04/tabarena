@@ -120,12 +120,21 @@ class NanoTabPFNModel(AbstractTorchModel):
         classifier = NanoTabPFNClassifier(model=backbone, device=device)
 
         # Fits classifier to train rows
-        X = self.preprocess(X, y=y)
+        X = self.preprocess(X, y=y, is_train=True)
         classifier.fit(
             X.to_numpy().astype(np.float32),
             y.to_numpy().astype(np.int64),
         )
         self.model = classifier
+
+    def _preprocess(self, X: pd.DataFrame, is_train: bool = False, **kwargs) -> pd.DataFrame:
+        X = super()._preprocess(X, is_train=is_train, **kwargs)
+        cat_cols = [c for c in X.columns if X[c].dtype.name == "category"]
+        if cat_cols:
+            X = X.copy()
+            for col in cat_cols:
+                X[col] = X[col].cat.codes.astype(np.float32)
+        return X
 
     def _predict_proba(self, X: pd.DataFrame, **kwargs) -> np.ndarray:  # noqa: ARG002
         proba = self.model.predict_proba(X.to_numpy().astype(np.float32))
